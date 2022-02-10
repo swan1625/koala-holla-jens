@@ -5,7 +5,7 @@ const pool = require('../modules/pool')
 
 
 // GET
-router.get('/',(req,res)=>{
+koalaRouter.get('/',(req,res)=>{
     let queryText = 'SELECT * FROM "koalas";';
 
     pool.query(queryText)
