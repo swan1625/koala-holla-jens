@@ -54,7 +54,7 @@ function saveKoala( newKoala ){
     method: 'POST',
     url: '/koalas',
     data: {
-     koala: {koalaToSend}
+     koala: {newKoala }
     }
    }).then(function(response){
      console.log(response);
