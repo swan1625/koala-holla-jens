@@ -1,11 +1,11 @@
 const express = require('express');
-const router = express.Router();
+const koalaRouter = express.Router();
 const pool = require('../modules/pool')
 // DB CONNECTION
 
 
 // GET
-router.get('/',(req,res)=>{
+koalaRouter.get('/',(req,res)=>{
     let queryText = 'SELECT * FROM "koala";';
     console.log(req.body);
     
@@ -24,10 +24,15 @@ router.get('/',(req,res)=>{
 
 // POST
 
+koalaRouter.post('/', (req, res) => {
+    let koala = req.body
+    console.log(koala);
+})
+
 
 // PUT
 
 
 // DELETE
 
-module.exports = router;
+module.exports = koalaRouter;
