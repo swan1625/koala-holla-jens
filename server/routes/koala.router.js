@@ -5,10 +5,11 @@ const pool = require('../modules/pool')
 
 
 // GET
-router.get('/',(req,res)=>{
-    let queryText = 'SELECT * FROM "koalas";';
+koalaRouter.get('/',(req,res)=>{
+    let queryText = 'SELECT * FROM "koala";';
 
     pool.query(queryText)
+
     .then((result)=>{
         res.send(result.rows);
 
@@ -17,11 +18,6 @@ router.get('/',(req,res)=>{
         res.sendStatus(500);
         
     })
-
-
-
-
-
 })
 
 
