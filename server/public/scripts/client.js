@@ -102,7 +102,7 @@ function renderKoalas(koalas) {
 
 function  transferKoala() {
   console.log('CLICK');
-  let boolean = $(this).closest('tr').data().ready_to_transfer;
+  let boolean = $(this).closest('tr').data().boolean;
   let id = $(this).closest('tr').data().id;
   console.log(boolean);
   // let markRead = $(this).closest('tr').text();
@@ -119,7 +119,7 @@ function  transferKoala() {
       }
   })
   .then(function(response) {
-      refreshBooks();
+      getKoalas();
   })
   .catch(function(err) {
       console.log(err);
