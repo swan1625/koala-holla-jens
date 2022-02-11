@@ -66,18 +66,33 @@ function renderKoalas(koalas) {
 
   for(let i = 0; i < koalas.length; i += 1) {
     let koala = koalas[i];
+    
     // For each koala, append a new row to our table
-    $('#viewKoalas').append(`
+     if (koala.ready_to_transfer === true){ 
+      $('#viewKoalas').append(`
+        <tr data-boolean = ${koala.ready_to_transfer} data-id = ${koala.id}>
+          <td>${koala.name}</td>
+          <td>${koala.gender}</td>
+          <td>${koala.age}</td>
+          <td>${koala.ready_to_transfer}</td>
+          <td>${koala.notes}</td>
+          <td>
+          </td>
+        </tr>
+      `);
+  }
+    else if(koala.ready_to_transfer === false){
+      $('#viewKoalas').append(`
       <tr data-boolean = ${koala.ready_to_transfer} data-id = ${koala.id}>
         <td>${koala.name}</td>
         <td>${koala.gender}</td>
         <td>${koala.age}</td>
         <td>${koala.ready_to_transfer}</td>
         <td>${koala.notes}</td>
-        <td>
-        </td>
+        <td><button class="mark-ready-btn">MARK AS READY</button></td>
       </tr>
-    `);
+      `)
+    }
   }
 }
 
