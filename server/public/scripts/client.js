@@ -27,12 +27,6 @@ function setupClickListeners() {
   }); 
 }
 
-
-
-
-
-
-
 function getKoalas(){
   console.log( 'in getKoalas' );
   // ajax call to server to get koalas
@@ -54,7 +48,7 @@ function saveKoala( newKoala ){
     method: 'POST',
     url: '/koalas',
     data: {
-     koala: {newKoala }
+      koala: newKoala
     }
    }).then(function(response){
      console.log(response);
@@ -74,7 +68,7 @@ function renderKoalas(koalas) {
     let koala = koalas[i];
     // For each koala, append a new row to our table
     $('#viewKoalas').append(`
-      <tr data-id = ${koala.id}>
+      <tr data-boolean = ${koala.ready_to_transfer} data-id = ${koala.id}>
         <td>${koala.name}</td>
         <td>${koala.gender}</td>
         <td>${koala.age}</td>
@@ -85,4 +79,30 @@ function renderKoalas(koalas) {
       </tr>
     `);
   }
+}
+
+function  transferKoala() {
+  console.log('CLICK');
+  let boolean = $(this).closest('tr').data().ready_to_transfer;
+  let id = $(this).closest('tr').data().id;
+  console.log(boolean);
+  // let markRead = $(this).closest('tr').text();
+  // console.log(read);
+
+  // call ajx for PUT
+  // need id and direction...
+
+  $.ajax({
+      method: 'PUT',
+      url: `/koalas/${id}`,
+      data: {
+        boolean: boolean
+      }
+  })
+  .then(function(response) {
+      refreshBooks();
+  })
+  .catch(function(err) {
+      console.log(err);
+  })
 }

@@ -10,6 +10,7 @@ koalaRouter.get('/',(req,res)=>{
     console.log(req.body);
     
     pool.query(queryText)
+
     .then((result)=>{
         res.send(result.rows);
 
@@ -18,11 +19,6 @@ koalaRouter.get('/',(req,res)=>{
         res.sendStatus(418);
         
     })
-
-
-
-
-
 })
 
 
