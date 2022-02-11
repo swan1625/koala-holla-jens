@@ -29,8 +29,22 @@ koalaRouter.get('/',(req,res)=>{
 // POST
 
 koalaRouter.post('/', (req, res) => {
-    let koala = req.body
+    let koala = req.body.koala
     console.log(koala);
+    
+
+    let sqlText = `
+    INSERT INTO "koala" ("name", "age", "gender", "ready_to_transfer", "notes") 
+    VALUES ( $1, $2, $3, $4, $5);`
+    
+    let koalaStuff = [koala.name, koala.age, koala.gender, koala.readyForTransfer, koala.notes]
+    pool.query(sqlText, koalaStuff)
+        .then(results => {
+            res.sendStatus(201)
+        }).catch(err => {
+            console.log('this Koala is hecked', err);
+            res.sendStatus(500)
+        })
 })
 
 
