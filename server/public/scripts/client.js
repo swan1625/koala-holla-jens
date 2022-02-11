@@ -53,8 +53,8 @@ function saveKoala( newKoala ){
   $.ajax({
     method: 'POST',
     url: '/koalas',
-    data: {
-     koala: {newKoala }
+    data:{ 
+      koala: newKoala 
     }
    }).then(function(response){
      console.log(response);
