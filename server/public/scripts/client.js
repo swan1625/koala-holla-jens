@@ -24,6 +24,8 @@ function setupClickListeners() {
     };
     // call saveKoala with the new obejct
     saveKoala( koalaToSend );
+
+    
   }); 
 }
 
@@ -39,6 +41,7 @@ function getKoalas(){
   }).catch(function(error){
     console.log('error in GET', error);
   });
+  $('#viewKoalas').on('click', '.mark-ready-btn', transferKoala)
 } // end getKoalas
 
 function saveKoala( newKoala ){
@@ -80,6 +83,7 @@ function renderKoalas(koalas) {
           </td>
         </tr>
       `);
+      
   }
     else if(koala.ready_to_transfer === false){
       $('#viewKoalas').append(`
