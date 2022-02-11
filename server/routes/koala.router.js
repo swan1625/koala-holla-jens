@@ -45,7 +45,45 @@ koalaRouter.post('/', (req, res) => {
 
 
 // PUT
-
+koalaRouter.put('/:id', (req, res) => {
+    let idToUpdate = req.params.id;
+    console.log(idToUpdate);
+    console.log(req.body);
+   
+  
+    let sqlText = '';
+  
+    if(req.body === true) {
+     sqlText = `
+      UPDATE "koala" 
+      SET "ready_to_transfer" = false
+      WHERE "id" = $1;
+    `
+    }
+    else if (req.body === false) {
+     sqlText = `
+     UPDATE "koala" 
+     SET "ready_to_transfer" = true
+     WHERE "id" = $1;
+    ` 
+    } 
+    else {
+        //bad req...
+        res.sendStatus(418)
+        // NOTHING ELSE HAPPENS
+        return;
+    }
+  
+    let sqlValues = [idToUpdate];
+    pool.query(sqlText, sqlValues)
+    .then(result => {
+     res.sendStatus(200)
+    })
+    .catch(error => {
+     console.log(err);
+     console.log(500);
+    })
+  })
 
 // DELETE
 
